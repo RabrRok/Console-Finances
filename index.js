@@ -86,3 +86,57 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+// ** Calculate the running total over each month recording Profit/Losses and for the entire period
+
+tot = 0;
+for (var i = 0; i < finances.length; i ++){
+    //console.log(finances[i])
+    for (var j = 0; j < finances[i].length; j++){
+        if (typeof finances[i][j] !== 'string'){
+        //console.log(finances[i][j]);    // uncomment this line to show seperated profit/losses from the array
+       //console.log(Math.min(finances[j]));
+        tot = tot + (finances[i][j]);
+        //console.log(tot);   //uncomment this line to show the running profit/losses month by month
+
+        }
+    }
+    
+}
+
+// ** Seperate the date from (string) from mumerical values
+
+for (var i = 0; i < finances.length; i ++){
+    for (var j = 0; j < finances[i].length; j++){
+        if (typeof finances[i][j] !== 'number'){
+        //console.log(finances[i][j]);    // uncomment this line to show seperated dates from the array
+        }
+    }
+ }
+
+// ** Calculate the average changes of the Profit/Losses over the whole period
+//finances.length = 85;
+let avg = tot / finances.length;
+const avgrslt = avg.toFixed(2);
+
+// ** The greatest increase in profits (date and amount) over the entire period.
+
+function getMax(a){
+    return Math.max(...a.map(e => Array.isArray(e) ? getMax(e) : e));
+}
+
+//console.log(getMax(finances));
+
+console.log(Math.max.apply(Math, finances.map(function (i) {
+return i[0]+i[1];
+})));
+
+// ** Results layout
+
+console.log("Financial Analysis");
+console.log("----------------------------");
+console.log("Total months: " + finances.length);
+console.log("Total: $" + tot);
+console.log("Average change: $" + avgrslt);
+console.log("Greatest Increase in Profits: ")
+console.log("Greatest Decrease in Profits: ")
